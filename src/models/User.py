@@ -1,4 +1,5 @@
 from main import db
+from models.Profile import Profile
 from sqlalchemy.orm import backref
 
 

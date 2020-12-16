@@ -1,6 +1,6 @@
 from main import ma
 from models.Song import Song
-# from marshmallow.validate import Length
+from marshmallow.validate import Length
 # from schemas.AudioSchema import AudioSchema
 
 
@@ -15,5 +15,5 @@ class SongSchema(ma.SQLAlchemyAutoSchema):
     # lyrics = ma.Nested(LyricSchema)
 
 
-profile_schema = ProfileSchema()
-profiles_schema = ProfileSchema(many=True)
+song_schema = SongSchema()
+songs_schema = SongSchema(many=True)
