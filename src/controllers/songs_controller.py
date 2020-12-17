@@ -13,11 +13,12 @@ songs = Blueprint("songs", __name__, url_prefix="/songs")
 def songs_index():
     # lyrics = Lyrics.query.options(joinedload("lyrics")).all()
     # audio = Audio.query.options(joinedload("audio")).all()
-    songs = Song.query.options(joinedload("songs")).all()
+    # songs = Song.query.options(joinedload("songs")).all()
+    songs = Song.query.all()
     return jsonify(songs_schema.dump(songs))
 
 @songs.route("/", methods=["POST"])
-def songs_create():
+def song_create():
 
     song_fields = song_schema.load(request.json)
 

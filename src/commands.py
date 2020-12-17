@@ -34,6 +34,7 @@ def seed_db():
     """
     from models.User import User
     from models.Profile import Profile
+    from models.Song import Song
     from main import bcrypt
     from faker import Faker
 
@@ -68,6 +69,17 @@ def seed_db():
 
         db.session.add(profile)
 
+    db.session.commit()
+
+    # Create test songs
+    for i in range(5):
+        song =  Song()
+
+        song.title = faker.catch_phrase()
+        song.artist = faker.first_name()
+
+        db.session.add(song)
+    
     db.session.commit()
 
     print("TABLES SEEDED")
