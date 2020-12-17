@@ -35,6 +35,7 @@ def seed_db():
     from models.User import User
     from models.Profile import Profile
     from models.Song import Song
+    from models.Playlist import Playlist
     from main import bcrypt
     from faker import Faker
 
@@ -55,6 +56,7 @@ def seed_db():
     admin.password = bcrypt.generate_password_hash("123456").decode("utf-8")
     admin.admin = True
     db.session.add(admin)
+    users.append(admin)
 
     db.session.commit()
 
@@ -62,12 +64,20 @@ def seed_db():
     for i in range(5):
         profile = Profile()
 
-        profile.username = faker.first_name()
+        profile.username = f"User{i+1}"
         profile.firstname = faker.first_name()
         profile.lastname = faker.last_name()
         profile.user_id = users[i].id
 
         db.session.add(profile)
+
+    # Create admin profile
+    admin = Profile()
+    admin.username = "admin"
+    admin.firstname = "admin"
+    admin.lastname = "admin"
+    admin.user_id = users[-1].id
+    db.session.add(admin)
 
     db.session.commit()
 
@@ -81,5 +91,14 @@ def seed_db():
         db.session.add(song)
     
     db.session.commit()
+
+    # Create test playlist
+    for i in range(5):
+        playlist = Playlist()
+        playlist.playlist_name = f"Playlist{i+1}"
+        db.session.add(playlist)
+
+    db.session.commit()
+        
 
     print("TABLES SEEDED")
