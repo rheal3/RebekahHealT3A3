@@ -34,3 +34,23 @@ def songs_create():
     db.session.commit()
 
     return jsonify(song_schema.dump(new_song))
+
+@songs.route("/<int:id>", methods=["GET"])
+def song_show(id):
+    song = Song.query.get(id)
+    return jsonify(song_schema.dump(song))
+
+@songs.route("/<int:id>", methods=["PUT", "PATCH"])
+@jwt_required
+# @verify_user
+def song_update(id):
+
+    song_fields = song_schema.load(request.json)
+    song = Song.query.filter_by(id=id)
+    if not song:
+        return abort(401, description="Unauthorized action.")
+
+    song.update(song_fields)
+    db.session.commit()
+    return jsonify(song_schema.dump(song[0]))
+
