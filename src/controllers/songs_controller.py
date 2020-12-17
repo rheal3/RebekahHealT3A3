@@ -55,3 +55,31 @@ def song_update(id):
     db.session.commit()
     return jsonify(song_schema.dump(song[0]))
 
+@songs.route("/<int:id>", methods=["DELETE"])
+@jwt_required
+def song_delete(id):
+    """
+    Deletes a single song from the songs table
+
+    Parameters:
+    id: integer
+        The id of the song to deleted
+
+    Returns:
+    Tuple containing message of deletion, and dict of deleted song
+    """
+
+    # admin = User.query.get(get_jwt_identity())
+
+    # if not admin.admin:
+    #     return abort(401, description="Invalid user action.")
+
+    song = Song.query.get(id)
+
+    if not song:
+        return "deleted"
+
+    db.session.delete(song)
+    db.session.commit()
+
+    return jsonify("The following song was deleted from the database:", song_schema.dump(song))
