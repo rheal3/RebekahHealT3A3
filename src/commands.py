@@ -38,6 +38,7 @@ def seed_db():
     from models.Playlist import Playlist
     from main import bcrypt
     from faker import Faker
+    import random
 
     faker = Faker()
     users = []
@@ -81,23 +82,28 @@ def seed_db():
 
     db.session.commit()
 
-    # Create test songs
-    for i in range(5):
-        song =  Song()
-
-        song.title = faker.catch_phrase()
-        song.artist = faker.first_name()
-
-        db.session.add(song)
-    
-    db.session.commit()
 
     # Create test playlist
+    playlists = []
     for i in range(5):
         playlist = Playlist()
         playlist.playlist_name = f"Playlist{i+1}"
         db.session.add(playlist)
+        playlists.append(playlist)
 
+    db.session.commit()
+
+    # Create test songs
+    for i in range(5):
+        playlist = random.choice(playlists)
+        song =  Song()
+
+        song.title = faker.catch_phrase()
+        song.artist = faker.first_name()
+        song.playlists.append(playlist)
+
+        db.session.add(song)
+    
     db.session.commit()
         
 

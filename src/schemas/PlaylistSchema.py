@@ -1,6 +1,7 @@
 from main import ma
 from models.Playlist import Playlist
 from marshmallow.validate import Length
+from schemas.SongSchema import SongSchema
 
 
 class PlaylistSchema(ma.SQLAlchemyAutoSchema):
@@ -8,10 +9,7 @@ class PlaylistSchema(ma.SQLAlchemyAutoSchema):
         model = Playlist
 
     playlist_name = ma.String(required=True, validate=Length(min=1))
-    songs = ma.List()
-    # songplaylist join table??
-
-    # have nested songs in here
+    songs = ma.Nested(SongSchema, many=True)
 
 playlist_schema = PlaylistSchema()
 playlists_schema = PlaylistSchema(many=True)

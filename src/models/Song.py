@@ -1,5 +1,5 @@
 from main import db
-from models.PlaylistSong import PlaylistSong
+from models.PlaylistSong import playlists_songs
 from sqlalchemy.orm import backref
 
 
@@ -11,7 +11,7 @@ class Song(db.Model):
     artist = db.Column(db.String(), nullable=False)
 
     # ??????!
-    playlist = db.relationship("PlaylistSong", backref=backref("playlistsong.playlist_id", uselist=False))
+    # playlist = db.relationship("PlaylistSong", backref=backref("playlistsong.playlist_id", uselist=False))
 
     # lyrics_id = db.Column(db.Integer, db.ForeignKey("lyrics.id"), nullable=False)
     # audio_id = db.Column(db.Integer, db.ForeignKey("audio.id"), nullable=False)
