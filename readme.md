@@ -1,27 +1,26 @@
-# online_shop
+# Spotify Extension
 
 Trello Board: 
 
 ---
 
 ## Overview
-This app will be an online shop for small business owners to sell their wares. The app will provide a user view point to buy items and a business owner viewpoint to upload and sell items. 
-The user interface will be clear and simple, focusing on the items that the business owner is selling. The user will be able to create an account to track their purchases and keep items in their basket.  
-The business owner (admin) interface will allow the owner to add, remove, and update the items for sale. There will be a page to view their orders and mark the status of the order to easily keep track. There will also be a page to track sales.
+
+
 
 ---
 
 ## Install Steps
 
-You will need the latest version of python and the pip package manager to complete the installation steps. Once you have python and pip, the steps are as follows:
+<!-- You will need the latest version of python and the pip package manager to complete the installation steps. Once you have python and pip, the steps are as follows:
 
-- Clone the repository: `git clone https://github.com/rheal3/receipt_app`
+- Clone the repository: `git clone https://github.com/rheal3/`
 - Change directory into the repository: `cd receipt_app`
 - Make sure venv is installed: `pip install venv`
 - Create the virtual environment: `python3 -m venv venv`
 - Activate the virtual environment: `source venv/bin/activate`
 - Install the dependencies from requirments.txt: `pip3 install -r requirements.txt`
-- Run the app: `python src/main.py`
+- Run the app: `python src/main.py` -->
 
 ---
 
@@ -33,65 +32,21 @@ Once it has pulled from master it installs the dependencies form requirements.tx
 
 ---
 
-## Wireframes
+## ???
 
-### Customer Interface
+The spotify extension uses the ORM model. This provides security from SQL injections.
 
-#### Landing Page
-The landing page will have details about the business as well as photo's to entice the customer to continue further into the website.  
-The background image will scroll through different product images with the business logo appearing ontop in the center of the page. By clicking on the logo on any page the user will be returned to the landing page.
-![](./docs/wireframes/landing.png)
+Storing data in the correct way is HUGELY important. If data is stored incorrectly the ramifications are not small, but large. The programmer has both an ethical and legal obligation to store data in the correct way. Ethically, the user needs to be warned of potential disasters within a terms and conditions type of disclosure. Legally, the company can be held accountable if information (such as financial information from credit cards) is stolen and used by attackers. 
 
-#### Login/Create Account
-The login/create account block appears above the current screen content on whichever page the user is on. This is the same popup for mobile and desktop.
-![](./docs/wireframes/login.png)
+Within the database, the passwords are stored in hashes rather than encrypted, becuase as we all know too well things that have been encrypted can be decrypted. DUN DUUN. The hash is a much safer option as is takes the password, does magic, and returns the same hash for that password each time making it easy to check against the stored password hash. In addition, salt can be added to make it even more uncrackable!! The salt is another secret bit that's unique to the site that is added on to the hashed password. Now the attacker would need to know the password and the salt to get in!
 
-#### My Account
-The my account page will be a place for the customer to change their account information. By creating an account and logging in the customer will be able to come back to their basket items after leaving the website.
-![](./docs/wireframes/account.png)
-
-#### Shop
-The shop page will contain 'item cards' that have images of the items for sale with the item name and price below. When the customer clicks on the item card a pop up will display (and the background will blur/become opaque) containing the item name, image, description, price, quantity, and an add to cart button.  
-On the left hand of the page will be a category selection where the customer can choose the category of item they wish to browse. There will also be a sorting button to sort A-Z, Z-A, or by price.
-![](./docs/wireframes/shop.png)
-
-#### Basket/Cart
-The cart page will display the items that the customer has selected and give the customer options to remove, change quantity, or proceed to checkout.
-![](./docs/wireframes/basket.png)
-
-#### Checkout
-The checkout page will take the customers details and securely checkout their purchase. The customer will receive an order number and receipt.
-![](./docs/wireframes/)
-
-#### Contact
-The contact page will have a simple for the customer can fill out providing their name, email, subject and message that will be sent through email to the business owner.
-![](./docs/wireframes/contact.png) 
-
-### Admin Interface
-The admin will be able to view and access the customer interface in the same manner as the customers, however in the drop down after logging in they have options for: managing the shop and orders.  
-![](./docs/wireframes/admin_drop.png)
-
-#### Manage Shop
-When the admin clicks on an item card the same pop up will appear, but will fields for editing. There will be extra fields for the category of the item and the admin will be able to save, delete, or archive the item card. The admin can access archived items through the archive tab under the add item tab on the left hand side. They will also be able to add categories on the left hand side at the bottom of the categories list.
-![](./docs/wireframes/manage_shop.png)
-
-#### Orders
-Orders will be ordered by order id. There will be a filtering option to filter by order status. When the admin clicks on the order it will show which items have been ordered, when, and the quantity; whether the customers payment has been received; and the shipping details. The admin will be able to change the status of the order within this popup.
-![](./docs/wireframes/orders.png)
-
-<!-- #### Statistics -->
-<!-- Currently unsure about what statistics are important... -->
-<!-- ![](./docs/wireframes/) -->
-
-<!-- #### Customers -->
-<!-- This page will list all customers who have made accounts and allow the admin to send a password reset email to the customer. ??? -->
-<!-- ![](./docs/wireframes/) -->
+In general, AWS has good security and good practices. However, these can be improved upon by using a private subnet when storing your database. This will make it so the user never accesses the database directly and it is accessed by the site instead, making it much safer.
 
 ---
 
 ## Database Schema
 
-- customer many or zero orders, orders one and only one customer
+<!-- - customer many or zero orders, orders one and only one customer
 
 - basket zero or one users, users one and only one basket
 
@@ -104,13 +59,13 @@ Orders will be ordered by order id. There will be a filtering option to filter b
 - order_details one and only one order, orders one and only one order_details
 - order_details many or one product, product many or zero order_details
 
-![](./docs/db/schema.png)
+![](./docs/db/schema.png) -->
 
 ---
 
 ## Swagger
 
-The swagger file shows the endpoints that will be used in the application. The endpoints include: shop, user, and orders.
+<!-- The swagger file shows the endpoints that will be used in the application. The endpoints include: shop, user, and orders.
 
-The swagger file is located at `.github/swagger.yml`. To view, it can be uploaded to https://editor.swagger.io/# or viewed in the terminal using the `less` or `cat` commands.
+The swagger file is located at `.github/swagger.yml`. To view, it can be uploaded to https://editor.swagger.io/# or viewed in the terminal using the `less` or `cat` commands. -->
 
