@@ -8,6 +8,7 @@ class PlaylistSchema(ma.SQLAlchemyAutoSchema):
         model = Playlist
 
     playlist_name = ma.String(required=True, validate=Length(min=1))
+    songs = ma.List()
     # songplaylist join table??
 
     # have nested songs in here

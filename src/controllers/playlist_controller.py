@@ -27,9 +27,32 @@ def playlist_create():
 
     return jsonify(playlist_schema.dump(new_playlist))
 
+# view single playlist
+@playlists.route("/<int:id>", methods=["GET"])
+def playlist_show(id):
+    playlist = Playlist.query.get(id)
+    return jsonify(playlist_schema.dump(playlist))
 
-# create playlist
-# add playlist to playlist
-# remove playlist from playlist
+# add song to playlist
+@playlists.route("/<int:id>/song", methods=["POST"])
+def playlist_add_song(id):
+    playlist = Playlist.query.get(id)
+
+    # playlist.song = ???
+
+
+
+# remove song from playlist
+@playlists.route("/<int:id>/song", methods=["DELETE"])
+def playlist_delete_song(id):
+    pass
+
 # edit playlist
+@playlists.route("/<int:id>", methods=["PUT", "PATCH"])
+def playlist_update(id):
+    pass
+
 # remove playlist
+@playlists.route("/<int:id>", methods=["DELETE"])
+def playlist_delete(id):
+    pass

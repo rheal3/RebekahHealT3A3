@@ -1,11 +1,18 @@
 from main import db
+from models.PlaylistSong import PlaylistSong
+from sqlalchemy.orm import backref
 
 class Playlist(db.Model):
     __tablename__ = "playlists"
 
     id = db.Column(db.Integer, primary_key=True)
     playlist_name = db.Column(db.String(), nullable=False, unique=True)
+    songs = db.Column(db.List())
+
     # connect to playlistsong join table which connects to song
+    # ??????!
+    song = db.relationship("PlaylistSong", backref=backref("playlistsong.song_id", uselist=False))
+
 
     def __repr__(self):
         return f"<Playlist {self.playlist_name}>"
