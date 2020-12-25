@@ -37,6 +37,7 @@ def seed_db():
     from models.Song import Song
     from models.Playlist import Playlist
     from models.Audio import Audio
+    from models.Lyrics import Lyrics
     from main import bcrypt
     from faker import Faker
     import random
@@ -105,6 +106,16 @@ def seed_db():
     
     db.session.commit()
 
+    # Create test audio file
+    lyrics_files = []
+    for i in range(5):
+        lyrics = Lyrics()
+        lyrics.lyrics_file = f"./lyricsfiles/lyrics{i+1}"
+        db.session.add(lyrics)
+        lyrics_files.append(lyrics)
+    
+    db.session.commit()
+
     # Create test songs
     for i in range(5):
         playlist = random.choice(playlists)
@@ -114,6 +125,7 @@ def seed_db():
         song.artist = faker.first_name()
         song.playlists.append(playlist)
         song.audio_id = audio_files[i].id
+        song.lyrics_id = lyrics_files[i].id
 
         db.session.add(song)
     

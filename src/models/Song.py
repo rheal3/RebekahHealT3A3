@@ -10,8 +10,7 @@ class Song(db.Model):
     title = db.Column(db.String(), nullable=False, unique=True)
     artist = db.Column(db.String(), nullable=False)
     audio_id = db.Column(db.Integer, db.ForeignKey("audio.id"))
-
-    # lyrics_id = db.Column(db.Integer, db.ForeignKey("lyrics.id"), nullable=False)
+    # lyrics_id = db.Column(db.Integer, db.ForeignKey("lyrics.id"))
 
     def __repr__(self):
         return f"<Song {self.title}>"
