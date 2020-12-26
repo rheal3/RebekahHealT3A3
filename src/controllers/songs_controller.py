@@ -5,7 +5,7 @@ from main import db
 # from services.auth_service import verify_user
 from sqlalchemy.orm import joinedload
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from flask import Blueprint, request, jsonify, abort
+from flask import Blueprint, request, jsonify, abort, render_template
 
 songs = Blueprint("songs", __name__, url_prefix="/songs")
 
@@ -15,7 +15,8 @@ def songs_index():
     # audio = Audio.query.options(joinedload("audio")).all()
     # songs = Song.query.options(joinedload("songs")).all()
     songs = Song.query.all()
-    return jsonify(songs_schema.dump(songs))
+    # return jsonify(songs_schema.dump(songs))
+    return render_template("songs_index.html", songs=songs)
 
 @songs.route("/", methods=["POST"])
 def song_create():
