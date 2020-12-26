@@ -111,7 +111,7 @@ def seed_db():
         lyrics.lyrics_file = f"./lyricsfiles/lyrics{i+1}"
         db.session.add(lyrics)
         lyrics_files.append(lyrics)
-    
+
     db.session.commit()
 
     # Create test songs
