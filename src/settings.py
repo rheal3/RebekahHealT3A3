@@ -38,6 +38,7 @@ class ProductionConfig(Config):
 # specific settings for testing env
 class TestingConfig(Config):
     TESTING = True
+    SQLALCHEMY_DATABASE_URI = "sqlite:///:testdb:"
 
 
 # gets current environment flask is set to

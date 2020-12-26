@@ -23,7 +23,8 @@ jobs:
           cd src
           flake8 --ignore=E501,F401,E402 .
       - name: Run Tests
+        env:
+          FLASK_ENV: testing
         run: |
           cd src
-          export DB_URI=postgresql+psycopg2://admin:admin@localhost:5432/spotify_ext
           python -m unittest discover tests/
