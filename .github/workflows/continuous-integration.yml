@@ -20,7 +20,8 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Run Checks
         run: |
-          flake8 --ignore=E501,F401,E402 src
+          cd src
+          flake8 --ignore=E501,F401,E402 .
       - name: Run Tests
         run: |
           cd src
