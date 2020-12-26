@@ -9,6 +9,7 @@ from flask import Blueprint, request, jsonify, abort, render_template
 
 songs = Blueprint("songs", __name__, url_prefix="/songs")
 
+
 @songs.route("/", methods=["GET"])
 def songs_index():
     # lyrics = Lyrics.query.options(joinedload("lyrics")).all()
@@ -17,6 +18,7 @@ def songs_index():
     songs = Song.query.all()
     # return jsonify(songs_schema.dump(songs))
     return render_template("songs_index.html", songs=songs)
+
 
 @songs.route("/", methods=["POST"])
 def song_create():
@@ -37,10 +39,12 @@ def song_create():
 
     return jsonify(song_schema.dump(new_song))
 
+
 @songs.route("/<int:id>", methods=["GET"])
 def song_show(id):
     song = Song.query.get(id)
     return jsonify(song_schema.dump(song))
+
 
 @songs.route("/<int:id>", methods=["PUT", "PATCH"])
 @jwt_required
@@ -55,6 +59,7 @@ def song_update(id):
     song.update(song_fields)
     db.session.commit()
     return jsonify(song_schema.dump(song[0]))
+
 
 @songs.route("/<int:id>", methods=["DELETE"])
 @jwt_required

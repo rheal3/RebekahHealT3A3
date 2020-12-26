@@ -1,6 +1,6 @@
 from main import db
-from models.PlaylistSong import playlists_songs
-from sqlalchemy.orm import backref
+# from models.PlaylistSong import playlists_songs
+# from sqlalchemy.orm import backref
 
 
 class Song(db.Model):
@@ -11,7 +11,8 @@ class Song(db.Model):
     artist = db.Column(db.String(), nullable=False)
     audio_id = db.Column(db.Integer, db.ForeignKey("audio.id"))
 
-    # lyrics_id = db.Column(db.Integer, db.ForeignKey("lyrics.id"), nullable=False)
+    # lyrics_id = db.Column(db.Integer, db.ForeignKey("lyrics.id"),
+    #                       nullable=False)
 
     def __repr__(self):
         return f"<Song {self.title}>"

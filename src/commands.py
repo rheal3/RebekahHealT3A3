@@ -83,7 +83,6 @@ def seed_db():
 
     db.session.commit()
 
-
     # Create test playlist
     playlists = []
     for i in range(5):
@@ -94,7 +93,6 @@ def seed_db():
 
     db.session.commit()
 
-
     # Create test audio file
     audio_files = []
     for i in range(5):
@@ -102,13 +100,13 @@ def seed_db():
         audio.audio_file = f"./audiofiles/audio{i+1}"
         db.session.add(audio)
         audio_files.append(audio)
-    
+
     db.session.commit()
 
     # Create test songs
     for i in range(5):
         playlist = random.choice(playlists)
-        song =  Song()
+        song = Song()
 
         song.title = faker.catch_phrase()
         song.artist = faker.first_name()
@@ -116,9 +114,7 @@ def seed_db():
         song.audio_id = audio_files[i].id
 
         db.session.add(song)
-    
-    db.session.commit()
 
-        
+    db.session.commit()
 
     print("TABLES SEEDED")

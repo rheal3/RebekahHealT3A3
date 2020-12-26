@@ -8,4 +8,4 @@ registerable_controllers = [
     profiles,
     songs,
     playlists
-    ]
+]

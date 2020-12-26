@@ -15,6 +15,7 @@ def playlist_index():
     playlists = Playlist.query.all()
     return jsonify(playlists_schema.dump(playlists))
 
+
 @playlists.route("/", methods=["POST"])
 def playlist_create():
     playlist_fields = playlist_schema.load(request.json)
@@ -27,19 +28,21 @@ def playlist_create():
 
     return jsonify(playlist_schema.dump(new_playlist))
 
+
 # view single playlist
 @playlists.route("/<int:id>", methods=["GET"])
 def playlist_show(id):
     playlist = Playlist.query.get(id)
     return jsonify(playlist_schema.dump(playlist))
 
+
 # add song to playlist
 @playlists.route("/<int:id>/song", methods=["POST"])
 def playlist_add_song(id):
-    playlist = Playlist.query.get(id)
+    # playlist = Playlist.query.get(id)
 
     # playlist.song = ???
-
+    pass
 
 
 # remove song from playlist
@@ -47,10 +50,12 @@ def playlist_add_song(id):
 def playlist_delete_song(id):
     pass
 
+
 # edit playlist
 @playlists.route("/<int:id>", methods=["PUT", "PATCH"])
 def playlist_update(id):
     pass
+
 
 # remove playlist
 @playlists.route("/<int:id>", methods=["DELETE"])
